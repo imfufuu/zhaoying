@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f7f1e8;
+  --color-paper: #fdfaf3;
+  --color-cream: #efe6d8;
+  --color-ink: #332520;
+  --color-ink-soft: #6b5a52;
+  --color-wine: #9e2c33;
+  --color-wine-deep: #7a1f26;
+  --color-blush: #f2d9d6;
+  --color-rose: #d98e8e;
+  --color-gold: #b3894e;
+  --color-gold-soft: #d8b98a;
+
+  --font-serif: "Noto Serif SC", "Songti SC", serif;
+  --font-latin: "Cormorant Garamond", "Noto Serif SC", serif;
+  --font-brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
+
+  --animate-spin-slow: spin 22s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: initial;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: var(--font-serif);
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #9e2c33;
+  color: #f7f1e8;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #f2ead9;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9a581;
+  border-radius: 99px;
+  border: 2px solid #f2ead9;
+}
+
+/* ---------- utilities ---------- */
+
+.font-latin { font-family: var(--font-latin); }
+.font-brush { font-family: var(--font-brush); }
+
+.vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.text-stroke-gold {
+  -webkit-text-stroke: 1px rgba(179, 137, 78, 0.45);
+  color: transparent;
+}
+.text-stroke-rose {
+  -webkit-text-stroke: 1px rgba(217, 142, 142, 0.55);
+  color: transparent;
+}
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  animation: grain-shift 0.9s steps(4) infinite;
+}
+
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 3%); }
+  50% { transform: translate(3%, -2%); }
+  75% { transform: translate(-3%, -3%); }
+  100% { transform: translate(2%, 2%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee-x 28s linear infinite;
+}
+.animate-marquee-slow {
+  animation: marquee-x 44s linear infinite;
+}
+
+@keyframes scroll-cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.animate-scroll-cue {
+  animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.9s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+@keyframes eq-bar {
+  0%, 100% { transform: scaleY(0.35); }
+  30% { transform: scaleY(1); }
+  60% { transform: scaleY(0.5); }
+}
+
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq-bar 0.9s ease-in-out infinite;
+}
+
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-vinyl {
+  animation: vinyl-spin 5s linear infinite;
+  animation-play-state: paused;
+}
+.animate-vinyl.playing {
+  animation-play-state: running;
+}
+
+/* fancy link underline sweep */
+.u-sweep {
+  position: relative;
+}
+.u-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.u-sweep:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+@media (pointer: coarse) {
+  .custom-cursor { display: none !important; }
+}
+
+/* A quieter, more considered finish: fine paper edges and gentler motion. */
+:focus-visible {
+  outline: 2px solid var(--color-wine);
+  outline-offset: 4px;
+}
+
+img {
+  image-rendering: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .grain::after { opacity: 0.035; }
+}
