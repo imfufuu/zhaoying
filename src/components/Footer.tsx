@@ -63,7 +63,7 @@ export default function Footer() {
           <p>{COUPLE.school} · 始于初二 · {COUPLE.weddingText} 结为夫妻</p>
           <p className="flex items-center gap-2">
             <Music2 className="h-3.5 w-3.5 text-gold" />
-            背景音乐 · 为这一刻现场合成的钢琴小夜曲
+            背景音乐 · 周杰伦《花海》
           </p>
         </motion.div>
 

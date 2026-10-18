@@ -20,9 +20,7 @@ export default function MusicPlayer() {
       setFailed(true);
     });
     audioRef.current = audio;
-    const t = window.setTimeout(() => setHint(false), 9000);
     return () => {
-      window.clearTimeout(t);
       audio.pause();
       audio.src = "";
       audioRef.current = null;
@@ -60,7 +58,7 @@ export default function MusicPlayer() {
             className="pointer-events-none whitespace-nowrap rounded-full border border-gold/30 bg-paper/90 px-4 py-2 shadow-[0_8px_30px_-12px_rgba(158,44,51,0.4)] backdrop-blur"
           >
             <span className="text-xs tracking-[0.25em] text-ink-soft">
-              {failed ? "音乐暂时无法加载" : "点开 · 播放专属旋律"}
+              {failed ? "歌曲暂时无法加载" : "轻点播放 · 周杰伦《花海》"}
             </span>
           </motion.div>
         )}

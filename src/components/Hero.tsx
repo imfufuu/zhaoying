@@ -103,9 +103,9 @@ export default function Hero({ ready }: { ready: boolean }) {
           <span className="h-px w-10 bg-gold/60 md:w-16" />
         </motion.p>
 
-        <h1 className="relative font-bold leading-[0.98]">
+        <h1 className="relative w-max max-w-full whitespace-nowrap font-bold leading-[0.98]">
           <motion.div variants={lineWrap} initial="hidden" animate={state} className="overflow-hidden">
-            <motion.div variants={lineInner} custom={0.65} className="text-[19vw] text-ink md:text-[9.5rem] lg:text-[11rem]">
+            <motion.div variants={lineInner} custom={0.65} className="whitespace-nowrap text-[clamp(4rem,12vw,11rem)] text-ink">
               张迪钊
             </motion.div>
           </motion.div>
@@ -123,7 +123,7 @@ export default function Hero({ ready }: { ready: boolean }) {
           </motion.div>
 
           <motion.div variants={lineWrap} initial="hidden" animate={state} className="overflow-hidden md:pl-[16%]">
-            <motion.div variants={lineInner} custom={0.85} className="text-[19vw] text-wine md:text-[9.5rem] lg:text-[11rem]">
+            <motion.div variants={lineInner} custom={0.85} className="whitespace-nowrap text-[clamp(4rem,12vw,11rem)] text-wine">
               薛婉莹
             </motion.div>
           </motion.div>
