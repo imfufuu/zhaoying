@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Music } from "lucide-react";
 
-const MUSIC_URL = "https://litter.catbox.moe/hzwv7oj13cxjbufo.mp3";
+const MUSIC_URL = `${import.meta.env.BASE_URL}audio/romantic-song.mp3`;
 
 export default function MusicPlayer() {
   const [playing, setPlaying] = useState(false);
